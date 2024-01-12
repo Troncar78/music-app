@@ -1,14 +1,11 @@
 <template>
     <MusicLayout>
         <template #title>
-            Créer une musique
+            Modifier la musique : {{ track.title }}
         </template>
 
         <template #action>
-            <Link 
-            v-if="$page.props.isAdmin"
-            :href="route('tracks.index')"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
+            <Link :href="route('tracks.index')">
             Retour
             </Link>
         </template>
@@ -18,7 +15,7 @@
 
                 <!-- TITRE -->
                 <div class="mb-4">
-                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Titre :</label>
+                    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Modifier le titre :</label>
                     <input type="text" v-model="form.title"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         :class="{ 'border-red-500': form.errors.title }">
@@ -26,26 +23,10 @@
 
                 <!-- Artiste -->
                 <div class="mb-4">
-                    <label for="artist" class="block text-gray-700 text-sm font-bold mb-2">Artiste :</label>
+                    <label for="artist" class="block text-gray-700 text-sm font-bold mb-2">Modifier l'artiste :</label>
                     <input type="text" v-model="form.artist"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         :class="{ 'border-red-500': form.errors.artist }">
-                </div>
-
-                <!-- Image -->
-                <div class="mb-4">
-                    <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Miniature :</label>
-                    <input type="file" @input="form.image = $event.target.files[0]" name="image" id="image"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        :class="{ 'border-red-500': form.errors.image }">
-                </div>
-
-                <!-- Audio -->
-                <div class="mb-4">
-                    <label for="music" class="block text-gray-700 text-sm font-bold mb-2">Audio :</label>
-                    <input type="file" @input="form.music = $event.target.files[0]" name="music" id="music"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        :class="{ 'border-red-800': form.errors.music }">
                 </div>
 
                 <!-- <div class="mb-4">
@@ -54,7 +35,7 @@
 
                 <!-- Afficher -->
                 <div class="mb-4">
-                    <label for="display">Afficher : </label>
+                    <label for="display">Afficher</label>
 
                     <select name="display" id="display" v-model="form.display">
                         <option :value="true">Oui</option>
@@ -68,10 +49,10 @@
                 </div>
             </form>
 
-            <div class="max-w-lg mx-auto p-4">
+            <!-- <div class="max-w-lg mx-auto p-4">
                 <span class="font-bold">Titre :</span> {{ form.title }} /
                 <span class="font-bold">Artiste :</span> {{ form.artist }}
-            </div>
+            </div> -->
 
         </template>
     </MusicLayout>
@@ -83,21 +64,22 @@ export default {
     components: {
         MusicLayout,
     },
+    props: {
+        track: Object,
+    },
     data() {
         return {
             test: '',
             form: this.$inertia.form({
-                title: '',
-                artist: '',
-                image: null,
-                music: null,
-                display: true
+                title: this.track.title,
+                artist: this.track.artist,
+                display: this.track.display ? true : false
             })
         }
     },
     methods: {
         submitForm() {
-            this.form.post(route('tracks.store'), {
+            this.form.put(route('tracks.update', {track : this.track}), {
             });
         }
     }

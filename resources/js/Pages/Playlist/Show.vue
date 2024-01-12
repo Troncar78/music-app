@@ -2,29 +2,22 @@
     <MusicLayout>
         <template #title>
             <div>
-                Musiques
+                Ma Playlist
             </div>
         </template>
 
         <template #action>
             <Link 
             v-if="$page.props.isAdmin"
-            :href="route('tracks.create')"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
-            >
-            Créer une musique
+            :href="route('playlists.index')"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
+            Retour
             </Link>
         </template>
         <template #content>
-            <div class="search-div p-4 bg-gray-100 rounded-lg shadow mb-4">
-                <label for="search" class="block text-gray-700 font-semibold mb-2">Filtres</label>
-                <input type="search" name="search" id="search" v-model="search"
-                    class="w-full p-2 border rounded focus:outline-none focus:shadow-outline">
-            </div>
-
             <ul class="list-none grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
                 <TrackCard 
-                    v-for="track in filteredTracks" 
+                    v-for="track in playlist.tracks" 
                     :key="track.uuid"
                     :track="track" 
                     :active="currentTrack === track.uuid"
@@ -32,30 +25,25 @@
                 />
             </ul>
         </template>
-
     </MusicLayout>
 </template>
 
 <script>
 import MusicLayout from '@/Layouts/MusicLayout.vue'
+import TrackCard from '@/Components/Track/TrackCard.vue'
 
 export default {
     components: {
         MusicLayout,
     },
     props: {
-        tracks: Array
+        playlist: Object
     },
     data() {
         return {
             'search': '',
             'audio': null,
             'currentTrack': null
-        }
-    },
-    computed: {
-        filteredTracks() {
-            return this.tracks.filter(track => track.title.toLowerCase().includes(this.search.toLowerCase()) || track.artist.toLowerCase().includes(this.search.toLowerCase()));
         }
     },
     methods: {
@@ -80,6 +68,7 @@ export default {
         }
     }
 }
+
 </script>
 
 <script setup>

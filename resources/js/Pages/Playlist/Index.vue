@@ -2,35 +2,46 @@
     <MusicLayout>
         <template #title>
             <div>
-                Musiques
+                Playlist
             </div>
         </template>
 
         <template #action>
             <Link 
-            v-if="$page.props.isAdmin"
-            :href="route('tracks.create')"
+            :href="route('playlists.create')"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
             >
-            Créer une musique
+            Créer une playlist
             </Link>
         </template>
         <template #content>
-            <div class="search-div p-4 bg-gray-100 rounded-lg shadow mb-4">
-                <label for="search" class="block text-gray-700 font-semibold mb-2">Filtres</label>
-                <input type="search" name="search" id="search" v-model="search"
-                    class="w-full p-2 border rounded focus:outline-none focus:shadow-outline">
-            </div>
-
-            <ul class="list-none grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
-                <TrackCard 
-                    v-for="track in filteredTracks" 
-                    :key="track.uuid"
-                    :track="track" 
-                    :active="currentTrack === track.uuid"
-                    @played="play"
-                />
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Titre</th>
+                        <th>Nombre de musiques</th>
+                        <th>Crée le</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody
+                    v-for="(playlist, i) in playlists"
+                    :key="playlist.uuid"
+                >
+                    <td>{{ i + 1 }} </td>
+                    <td>{{ playlist.title }} </td>
+                    <td>{{ playlist.tracks_count }} </td>
+                    <td>{{ playlist.created_at }} </td>
+                    <td>
+                        <Link
+                        :href="route('playlists.show', {playlist: playlist})"
+                        class="bg-blue-500 hover:bg-nlue-800 text-white font-bold py-2 px-4">
+                        Show
+                        </Link>
+                    </td>
+                </tbody>
+            </table>
         </template>
 
     </MusicLayout>
@@ -44,7 +55,7 @@ export default {
         MusicLayout,
     },
     props: {
-        tracks: Array
+        playlists : Array
     },
     data() {
         return {

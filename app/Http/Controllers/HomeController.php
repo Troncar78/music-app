@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class homeController extends Controller
 {
-    public function index(){
-        dd("here");
+    public function index() {
+        dd('here');
     }
 }
