@@ -23,13 +23,15 @@
                     <div class="flex items-center mb-5">
                         <!--         tip - here neede inline-block , but why? -->
                         <label for="name" class="inline-block w-20 mr-6 text-right 
-                                                font-bold text-gray-600">Nom :</label>
+                                                font-bold text-gray-600"
+                                                >Nom :</label>
                         <input type="text" v-model="form.name" placeholder="Ma clé API"
                             class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
                                     text-gray-600 placeholder-gray-400
                                     outline-none">
                     </div>
-                    <div class="text-right">
+                    <p class="text-red-500 text-xs italic text-end">{{ form.errors.name }}</p>
+                    <div class="text-right mt-3">
                         <button class="py-3 px-8 bg-blue-500 hover:bg-blue-600 text-white font-bold">Envoyer</button> 
                     </div>
                 </div>

@@ -29,8 +29,9 @@
                                     text-gray-600 placeholder-gray-400
                                     outline-none">
                     </div>
+                    <p class="text-red-500 text-xs italic text-end">{{ form.errors.title }}</p>
 
-                    <div class="flex items-center mb-5">
+                    <div class="flex items-center mt-3 mb-5">
                         <!--         tip - here neede inline-block , but why? -->
                         <label for="artist" class="inline-block w-20 mr-6 text-right 
                                                 font-bold text-gray-600">Artiste :</label>
@@ -39,6 +40,7 @@
                                     text-gray-600 placeholder-gray-400
                                     outline-none">
                     </div>
+                    <p class="text-red-500 text-xs italic text-end">{{ form.errors.artist }}</p>
 
                     <div class="flex items-center mb-5">
                         <!--         tip - here neede inline-block , but why? -->
@@ -49,6 +51,7 @@
                                     text-gray-600 placeholder-gray-400
                                     outline-none">
                     </div>
+                    <p class="text-red-500 text-xs italic text-end">{{ form.errors.image }}</p>
 
                     <div class="flex items-center mb-5">
                         <!--         tip - here neede inline-block , but why? -->
@@ -59,6 +62,7 @@
                                     text-gray-600 placeholder-gray-400
                                     outline-none">
                     </div>
+                    <p class="text-red-500 text-xs italic text-end">{{ form.errors.music }}</p>
 
                     <div class="flex items-center mb-5">
                         <!--         tip - here neede inline-block , but why? -->
