@@ -15,33 +15,42 @@
             </Link>
         </template>
         <template #content>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Titre</th>
-                        <th>Nombre de musiques</th>
-                        <th>Crée le</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody
+            <div class="flex items-center justify-center">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white shadow-md rounded-xl">
+                    <thead>
+                        <tr class="bg-blue-gray-100 text-gray-700">
+                        <th class="py-3 px-4 text-left">#</th>
+                        <th class="py-3 px-4 text-left">Titre</th>
+                        <th class="py-3 px-4 text-left">Nombre de musiques</th>
+                        <th class="py-3 px-4 text-left">Crée le</th>
+                        <th class="py-3 px-4 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-blue-gray-900"
                     v-for="(playlist, i) in playlists"
-                    :key="playlist.uuid"
-                >
-                    <td>{{ i + 1 }} </td>
-                    <td>{{ playlist.title }} </td>
-                    <td>{{ playlist.tracks_count }} </td>
-                    <td>{{ playlist.created_at }} </td>
-                    <td>
-                        <Link
+                    :key="playlist.uuid">
+                        <tr class="border-b border-blue-gray-200 hover:bg-slate-50">
+                        <td class="py-3 px-4">{{ i + 1 }}</td>
+                        <td class="py-3 px-4">{{ playlist.title }}</td>
+                        <td class="py-3 px-4">{{ playlist.tracks_count }}</td>
+                        <td class="py-3 px-4">{{ playlist.created_at }}</td>
+                        <td class="py-3 px-4">
+                            <Link
                         :href="route('playlists.show', {playlist: playlist})"
-                        class="bg-blue-500 hover:bg-nlue-800 text-white font-bold py-2 px-4">
+                        class="bg-slate-500 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">
                         Show
                         </Link>
-                    </td>
-                </tbody>
-            </table>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    <div class="w-full pt-5 px-4 mb-8 mx-auto ">
+                    <div class="text-sm text-gray-700 py-1 text-center">
+                    </div>
+                    </div>
+                </div>
+                </div>
         </template>
 
     </MusicLayout>

@@ -14,23 +14,27 @@
         </template>
 
         <template #content>
-            <form action="" class="max-w-lg mx-auto p-4 shadow-md rounded" @submit.prevent="submitForm">
+            <form action="" @submit.prevent="submitForm">
+                <div class="py-10 px-10 ">
+                <!--   tip; mx-auto -- jagab ilusti keskele  -->
+                <div class="bg-white p-10 md:w-3/4 lg:w-1/2 mx-auto shadow-md rounded-xl">
 
-                <!-- NOM -->
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name :</label>
-                    <input type="text" v-model="form.name"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        :class="{ 'border-red-500': form.errors.name }">
+                    <!--       flex - asjad korvuti, nb! flex-1 - element kogu ylejaanud laius -->
+                    <div class="flex items-center mb-5">
+                        <!--         tip - here neede inline-block , but why? -->
+                        <label for="name" class="inline-block w-20 mr-6 text-right 
+                                                font-bold text-gray-600">Nom :</label>
+                        <input type="text" v-model="form.name" placeholder="Ma clé API"
+                            class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
+                                    text-gray-600 placeholder-gray-400
+                                    outline-none">
+                    </div>
+                    <div class="text-right">
+                        <button class="py-3 px-8 bg-blue-500 hover:bg-blue-600 text-white font-bold">Envoyer</button> 
+                    </div>
                 </div>
-
-                <!-- ENVOYER -->
-                <div class="mb-4">
-                    <input type="submit" value="Créer"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 </div>
             </form>
-
         </template>
     </MusicLayout>
 </template>

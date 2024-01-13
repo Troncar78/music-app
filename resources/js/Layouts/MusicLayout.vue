@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative ml-3 gap-x-2">
+                    <div class="flex ml-3 gap-x-2 justify-between">
                         <Link 
                             v-if="!$page.props.auth.user"
                             :href="route('login')"
